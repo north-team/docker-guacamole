@@ -103,9 +103,11 @@ COPY guacamole.properties ${GUACAMOLE_HOME}/
 ADD http://download.jumpserver.org/public/ssh-forward.tar.gz /tmp/
 RUN tar xvf /tmp/ssh-forward.tar.gz -C /bin/ && chmod +x /bin/ssh-forward
 
-ADD http://download.jumpserver.org/release/${JMS_VERSION}/guacamole-client-${JMS_VERSION}.tar.gz /tmp/
+ADD http://f2c-north-rel.oss-cn-qingdao.aliyuncs.com/2.0/north/jumpserver/jms-guacamole-client-dazhongchuxing/guacamole-client-${JMS_VERSION}.tar.gz /tmp/
 
-RUN tar -xzf /tmp/guacamole-client-${JMS_VERSION}.tar.gz \
+RUN mkdir guacamole-client-${JMS_VERSION}
+
+RUN tar -xzf /tmp/guacamole-client-${JMS_VERSION}.tar.gz -C guacamole-client-${JMS_VERSION}\
     && cp guacamole-client-${JMS_VERSION}/guacamole-*.war ${CATALINA_HOME}/webapps/ROOT.war \
     && cp guacamole-client-${JMS_VERSION}/guacamole-*.jar ${GUACAMOLE_HOME}/extensions/ \
     && rm -rf /tmp/guacamole-client-${JMS_VERSION}.tar.gz guacamole-client-${JMS_VERSION}
